@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ContextData from "../context/ContextData";
+import ContextData, { UserContext } from "../context/ContextData";
 
 function Navbar(){
     let styles={
@@ -11,14 +11,14 @@ function Navbar(){
         color:"darkblue",
     }
     let nav=useNavigate();
-    let token = localStorage.getItem("token");
+    // let token = localStorage.getItem("token");
 
     // let logout = () => {
     //     localStorage.removeItem("token");
     //     nav("/")
     // }
 
-    let {logoutUser} = useContext(ContextData);
+    let {logoutUser,user} = useContext(UserContext);
 
     let logout = () => {
         logoutUser();
@@ -32,7 +32,7 @@ function Navbar(){
             <button><Link to="/">Home</Link></button> &nbsp; &nbsp;
             <button onClick={()=>{nav("/adddoctor")}}>Add Doctor</button> &nbsp; &nbsp;
             {
-                token ? (<button onClick = {logoutUser}>Logout</button>) :
+                user ? (<button onClick = {logout}>Logout</button>) :
                 ( <button onClick={()=>nav("/login")}>Login</button>)
             }
 

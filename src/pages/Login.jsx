@@ -1,13 +1,13 @@
 import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import ContextData from "../context/ContextData";
+import ContextData, { UserContext } from "../context/ContextData";
 
 function Login(){
     let[email,setEmail]=useState("");
     let[password,setPassword]=useState("");
     let nav = useNavigate();
-    let {loginUser} = useContext(ContextData)
+    let {loginUser} = useContext(UserContext)
 
     let handleLogin = async(e) => {
         try{

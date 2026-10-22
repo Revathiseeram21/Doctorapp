@@ -1,11 +1,13 @@
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { UserContext } from "../context/ContextData";
 
 function ProtectedRoute({ children }){
-    let token = localStorage.getItem("token")
+    let {user}=useContext(UserContext)
     return(
         <>
         {
-            token ? children : (<Navigate to = "/login" replace/>)
+            user ? children : (<Navigate to = "/login" replace/>)
         }
         </>
     )
